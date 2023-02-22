@@ -27,11 +27,11 @@ class MainActivity : AppCompatActivity() {
     @Composable
     private fun MainContent(it: PaddingValues) {
         val vm: MainViewModel = viewModel()
-        val state by vm.stateLd.observeAsState()
+        val state: MyResult<MyState>? by vm.stateLd.observeAsState()
 
         Column{
             TextField(
-                value = state?.text ?: "",
+                value = state?.data?.text ?: "qwe",
                 onValueChange = {
                     vm.onValueChanged(it)
                 }
@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             ListOfTexts(
-                state?.texts ?: emptyList()
+                state?.data?.texts ?: emptyList()
             )
 
         }
