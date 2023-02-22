@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 
 data class MyState (
     val texts: MutableList<String> = mutableListOf(),
-    var state: String = ""
+    var text: String = ""
 )
 
 class MainViewModel: ViewModel() {
@@ -14,12 +14,12 @@ class MainViewModel: ViewModel() {
 
 
     fun onValueChanged(newValue: String) {
-        state.state = newValue
+        state.text = newValue
         stateLd.postValue(state)
     }
 
     fun onSaveValue() {
-        state.texts.add(state.state)
+        state.texts.add(state.text)
         onValueChanged("")
         stateLd.postValue(state)
     }

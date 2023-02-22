@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
 
         Column{
             TextField(
-                value = state?.state ?: "",
+                value = state?.text ?: "",
                 onValueChange = {
                     vm.onValueChanged(it)
                 }
