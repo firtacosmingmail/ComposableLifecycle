@@ -9,6 +9,8 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.TextField
 import androidx.compose.runtime.*
+import androidx.compose.runtime.livedata.observeAsState
+import androidx.lifecycle.viewmodel.compose.viewModel
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,16 +28,17 @@ class MainActivity : AppCompatActivity() {
 
     @Composable
     private fun MainContent(it: PaddingValues) {
-        var text by remember{ mutableStateOf("Here's Bessy!")}
+        val vm: MainViewModel = viewModel()
+        val text by vm.stateLd.observeAsState()
 
         Column{
             TextField(
-                value = text,
+                value = text ?: "",
                 onValueChange = {
-                    text = it
+                    vm.onValueChanged(it)
                 }
             )
-            StatefulText(initialState = text)
+            StatefulText(initialState = text ?: "")
 
         }
     }
