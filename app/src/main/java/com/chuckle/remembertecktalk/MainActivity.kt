@@ -2,22 +2,20 @@ package com.chuckle.remembertecktalk
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
@@ -48,7 +46,7 @@ class MainActivity : AppCompatActivity() {
         ) {
             MyRow(
                 modifier = Modifier
-                    .padding(top = 100.dp)
+                    .padding(top = 5.dp)
                     .fillMaxWidth()
                     .height(100.dp)
             ) {
@@ -102,52 +100,8 @@ class MainActivity : AppCompatActivity() {
                     text = "Change image",
                 )
             }
+
+            TheList()
         }
     }
-
-    private @Composable
-    fun MyText(modifier: Modifier = Modifier, text: String, fontSize: TextUnit = 14.sp) {
-        Log.d("Recomposition", "Composing the Text [$text]")
-
-        Text(
-            modifier = modifier,
-            fontSize = fontSize,
-            text = text
-        )
-    }
-
-    private @Composable
-    fun MyColumn(modifier: Modifier = Modifier, content: @Composable ColumnScope.() -> Unit) {
-        Log.d("Recomposition", "Composing the Column")
-        Column(
-            modifier = modifier
-        ){
-            content()
-        }
-    }
-
-    private @Composable
-    fun MyImage(modifier: Modifier, imageId: Int) {
-        Log.d("Recomposition", "Composing the Image")
-
-        Image(
-            modifier = modifier,
-            painter = painterResource(id = imageId), contentDescription = "ic lancer"
-        )
-    }
-
-    private @Composable
-    fun MyRow(
-        modifier: Modifier,
-        content: @Composable RowScope.() -> Unit
-    ) {
-        Log.d("Recomposition", "Composing the Row")
-        Row(
-            modifier = modifier
-        ){
-            content()
-        }
-    }
-
-
 }
