@@ -4,10 +4,13 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.foundation.gestures.Orientation
+import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
@@ -43,6 +46,7 @@ class MainActivity : AppCompatActivity() {
         var imageId by remember{ mutableStateOf(R.drawable.pisicuta) }
 
         MyColumn(
+            modifier = Modifier.scrollable(state = rememberScrollState(), orientation = Orientation.Vertical)
         ) {
             MyRow(
                 modifier = Modifier
