@@ -73,6 +73,7 @@ fun MyLazyColumn(modifier: Modifier = Modifier,
                 index = index,
                 onItemClicked = onItemClicked,
                 onItemDeleted = onItemDeleted,
+                extraPadding = if(elements[index].contains("[")) index * 10 else 0
             )
         }
     }
@@ -85,10 +86,11 @@ fun MyLazyItem(
     index: Int,
     onItemClicked: (Int) -> Unit,
     onItemDeleted: (Int) -> Unit,
+    extraPadding: Int = 0
 ) {
     Row(
         modifier = modifier
-            .height(20 .dp)
+            .height((20 + extraPadding).dp)
             .clickable {
                 onItemClicked(index)
             }
