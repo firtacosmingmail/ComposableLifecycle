@@ -2,6 +2,7 @@ package com.chuckle.remembertecktalk
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.gestures.Orientation
@@ -48,34 +49,7 @@ class MainActivity : AppCompatActivity() {
         MyColumn(
             modifier = Modifier.scrollable(state = rememberScrollState(), orientation = Orientation.Vertical)
         ) {
-            MyRow(
-                modifier = Modifier
-                    .padding(top = 5.dp)
-                    .fillMaxWidth()
-                    .height(100.dp)
-            ) {
-                MyImage(
-                    modifier = Modifier
-                        .clip(shape = CircleShape)
-                        .size(50.dp),
-                    imageId = imageId
-                )
-                MyColumn(
-                    modifier = Modifier
-                ) {
-                    MyText(
-                        modifier = Modifier,
-                        fontSize = 20.sp,
-                        text = title,
-                    )
-                    MyText(
-                        modifier = Modifier.padding(top = 5.dp),
-                        fontSize = 12.sp,
-                        text = "I have the greatest cats of all times!"
-                    )
-                }
-
-            }
+            MainRow(title, imageId)
 
             Button(onClick = {
                 count++
@@ -107,5 +81,39 @@ class MainActivity : AppCompatActivity() {
 
             TheList()
         }
+    }
+
+    @Composable
+    fun MainRow(title: String, imageId: Int) {
+        Log.d("Recomposition", "Composing the MainRow")
+        MyRow(
+            modifier = Modifier
+                .padding(top = 5.dp)
+                .fillMaxWidth()
+                .height(100.dp)
+        ) {
+            MyImage(
+                modifier = Modifier
+                    .clip(shape = CircleShape)
+                    .size(50.dp),
+                imageId = imageId
+            )
+            MyColumn(
+                modifier = Modifier
+            ) {
+                MyText(
+                    modifier = Modifier,
+                    fontSize = 20.sp,
+                    text = title,
+                )
+                MyText(
+                    modifier = Modifier.padding(top = 5.dp),
+                    fontSize = 12.sp,
+                    text = "I have the greatest cats of all times!"
+                )
+            }
+
+        }
+
     }
 }
